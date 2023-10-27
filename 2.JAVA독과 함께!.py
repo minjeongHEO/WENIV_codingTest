@@ -20,29 +20,29 @@
 # JavaScript에서는 변수명을 지을 때 주로 camelCase 형식을 사용합니다.
 
 # *****************첫번째 케이스*****************
-dog_json = [{
-    "이름" : "루비독",
-    "나이" : "95년생",
-    "점프력" : "3",
-    "몸무게" : "4",
-    },{
-    "이름" : "피치독",
-    "나이" : "95년생",
-    "점프력" : "3",
-    "몸무게" : "3",
-    },{
-    "이름" : "씨-독",
-    "나이" : "72년생",
-    "점프력" : "2",
-    "몸무게" : "1",
-    },{
-    "이름" : "코볼독",
-    "나이" : "59년생",
-    "점프력" : "1",
-    "몸무게" : "1",
-    },
-]
-rock_power = [1, 2, 1, 4] # 돌의 내구도
+# dog_json = [{
+#     "이름" : "루비독",
+#     "나이" : "95년생",
+#     "점프력" : "3",
+#     "몸무게" : "4",
+#     },{
+#     "이름" : "피치독",
+#     "나이" : "95년생",
+#     "점프력" : "3",
+#     "몸무게" : "3",
+#     },{
+#     "이름" : "씨-독",
+#     "나이" : "72년생",
+#     "점프력" : "2",
+#     "몸무게" : "1",
+#     },{
+#     "이름" : "코볼독",
+#     "나이" : "59년생",
+#     "점프력" : "1",
+#     "몸무게" : "1",
+#     },
+# ]
+# rock_power = [1, 2, 1, 4] # 돌의 내구도
 # 생존자 : ['씨-독']
 
 # *****************두번째 케이스*****************
@@ -69,39 +69,22 @@ dog_json = [{
     },
 ]
 rock_power = [5, 3, 4, 1, 3, 8, 3]
-생존자 : ['루비독', '씨-독']
+# 생존자 : ['루비독', '씨-독']
 
 # print(dog_json.length) # js
-print(len(dog_json))    # py
+# print(len(dog_json))    # py
 
 SAVE_DOG = []
-# for i in dog_json:
-for index, i in enumerate(dog_json): # *1)
+for i in dog_json:
+# for index, i in enumerate(dog_json): # *1)
     dog_weight = int(i["몸무게"])
     dog_name = i["이름"]
     dog_jump = int(i["점프력"])
 
     weight_check = False
 
-    # for j in rock_power:
-    #     if(j < dog_weight):
-    #         weight_check = True
-    #         break
-    #
-    # if(weight_check):
-    #     continue
-
-    # print(`---${dogName}`)        # js
-    print(f"--------'{dog_name}' 의--------")   # py
-    print(f"---점프력:{dog_jump}")  # py
-    print(f"---몸무게:{dog_weight}")  # py
-
-    print(f"이전{rock_power}")
-    #점프력으로 계속 len(rockPower)이 넘을 때까지
     dog_location = dog_jump - 1
     while dog_location < len(rock_power):
-        print(f"dog_location (=인덱스값): {dog_location}")
-
         if rock_power[dog_location] < dog_weight:
             rock_power[dog_location] = 0
             weight_check = True
@@ -114,16 +97,11 @@ for index, i in enumerate(dog_json): # *1)
             SAVE_DOG.append(dog_name)
             break  # 반복문을 빠져나옵니다.
 
-    print(f"이후{rock_power}")
-
     if weight_check:
         continue
 
 
-print("")
 print(f"SAVE_DOG : {SAVE_DOG}")
-
-
 
 #
 # *1)
