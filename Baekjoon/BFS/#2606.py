@@ -21,8 +21,8 @@ def bfs(v):
     while queue:
         cur = queue.popleft()
         for i in range(1, n+1):
-            # if graph[v][i] == 1 and not visited[i]:
-            if not visited[i] and graph[cur][i] == 1:
+            if graph[cur][i] == 1 and not visited[i]:
+            # if not visited[i] and graph[cur][i] == 1:
                 count += 1
                 visited[i] = True
                 queue.append(i)
