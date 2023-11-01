@@ -91,7 +91,7 @@ def dfs(x, y):
 
 dfs(0, 0)
 
-if visited[n-1][n-1] == True:
+if visited[n-1][n-1] == True: # visited[-1][-1] : 마지막 요소구할 때
     print('HaruHaru')
 else:
     print('Hing')
