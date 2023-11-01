@@ -23,11 +23,9 @@ def bfs(v):
         for i in range(1, n+1):
             # if graph[v][i] == 1 and not visited[i]:
             if not visited[i] and graph[cur][i] == 1:
-                print("hey")
                 count += 1
                 visited[i] = True
                 queue.append(i)
 
 bfs(1) #여기에 1을 지정하여 실행했기에 1번에 연결된 컴퓨터만 센다.
-print()
 print(count)
