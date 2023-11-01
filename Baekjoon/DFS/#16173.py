@@ -5,9 +5,21 @@
 이동은 오른쪽. 아래 두가지만 가능
 쩰리가 가장 오른쪽,맨아래에 도착 시 그 즉시 쩰리의 승리
 쩰리는 현재 밟고 있는 칸의 수 만큼 이동가능
+
+3
+1 1 10
+1 5 1
+2 2 -1
+
+HaruHaru
+
+3
+2 2 1
+2 2 2
+1 2 -1
+
+Hing
 '''
-
-
 
 #예외 처리
 # n < 2 or n >3
@@ -40,34 +52,50 @@
 # 이면 Hing
 
 n = int(input())
-graph = []
 
-for i in range(n):
-    graph.append(list(map(int, input().split())))
+# ******** 게임판의 구역을 입력받는다. 2차원 리스트 ********
+# graph = []
+# for i in range(n):
+#     graph.append(list(map(int, input().split())))
+
+graph = [list(map(int, input().split())) for _ in range(n)]
+
+# ******** 방문여부를 저장할 visit 2차원 리스트를 만든다. ********
+# visit = []
+# n = 3
+# for i in range(n):       # i = 0, 1, 2
+#     row = [0]*n          # row = [0, 0, 0]
+#     visit.append(row)
+#
+# print(visit)             # visit = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+visited = [[0]*n for _ in range(n)] # [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+
+
+
 
 def dfs(x, y):
-    해당위치값 = graph[x][y]
-    if x == n-1 and y == n-1:
-        print('HaruHaru')
-        return 'HaruHaru'
+    visited[x][y] = True # 방문여부체크!!!!!!!
+
+    dx = [graph[x][y], 0]
+    dy = [0, graph[x][y]]
 
     for i in range(2):
-        if i==0:
-            if x+해당위치값 > n-1:
-                continue
-            else:
-                dfs(x+해당위치값, y)
-                break
+        nx = x + dx[i]
+        ny = y + dy[i]
 
-        if i == 1:
-            if y+해당위치값 > n-1:
-                print('Hing')
-                return 'Hing'
-            else:
-                dfs(x,y+해당위치값)
-                break
+        if 0 <= nx < n and 0 <= ny < n and visited[nx][ny] == 0:
+            dfs(nx, ny)
+
 
 
 dfs(0, 0)
+
+if visited[n-1][n-1] == True:
+    print('HaruHaru')
+else:
+    print('Hing')
+
+
 
 
