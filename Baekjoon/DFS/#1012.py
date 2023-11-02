@@ -16,9 +16,11 @@ MAX = 50+10
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-def dfs(y, x):
+# def dfs(y, x):
+def dfs(x, y):
     # 방문처리하고
-    graph[y][x] = False
+    # graph[y][x] = False
+    graph[x][y] = False
 
     # 상 하 좌 우 도 재귀호출
     for i in range(4):
@@ -28,9 +30,10 @@ def dfs(y, x):
         # if 0 <= nx < m and 0 <= ny < n and graph[nx][ny]:  # nx와 ny가 그래프의 범위 내에 있는지 확인
         # => 애초에 graph배열을 최댓값(50)+10 크기만큼 만들었기 떄문에 범위확인 생략이 가능
         # 배추밭의 가로길이 M(1 ≤ M ≤ 50:최댓값)과 세로길이 N(1 ≤ N ≤ 50:최댓값),
-        if graph[ny][nx]:
-            dfs(ny, nx)
-
+        # if graph[ny][nx]:
+        #     dfs(ny, nx)
+        if graph[nx][ny]:
+            dfs(nx, ny)
 
 #0. 입력 및 초기화
 t = int(input()) #테스트 케이스의 개수
@@ -66,6 +69,19 @@ for _ in range(t):
     for _ in range(k):
         x, y = map(int, input().split())
         graph[y + 1][x + 1] = True
+        '''
+        문제의 입력 조건을 읽어보면,
+        " 그 다음 K줄에는 배추의 위치 X(0 ≤ X ≤ M-1), Y(0 ≤ Y ≤ N-1)가 주어진다. 두 배추의 위치가 같은 경우는 없다."
+        
+        가로길이 M = 열의 길이
+        세로길이 N = 행의 길이
+        배추의 위치 X(0 ≤ X ≤ M-1), Y(0 ≤ Y ≤ N-1)
+        그러므로  x = 열의 위치인  graph[][여기]
+                y = 행의 위치인  graph[여기][]
+        이므로 
+        graph[x + 1][y + 1] = True (X)
+        graph[y + 1][x + 1] = True (O)
+        '''
 
     # 2. 방문하지 않은 지점부터 dfs 돌기
     result = 0
