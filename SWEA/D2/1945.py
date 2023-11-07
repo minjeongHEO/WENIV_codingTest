@@ -45,30 +45,30 @@ N은 2 이상 10,000,000 이하이다.
 # =======================================================================
 # 방법 1
 # =======================================================================
-T = int(input())
-for tc in range(1, T+1):
-    N = int(input()) # 입력으로 받은 N을
-    num = [2, 3, 5, 7, 11] # 소인수 리스트를 만들어서
-    count = [0, 0, 0, 0, 0] # 나눠진 횟수를 담기위한 빈 리스트 생성
-
-    # 리스트 num을 돌면서(range로 한 이유는 같은 인덱스에 count리스트에도 횟수를 추가해주기 위해서)
-    for n in range(len(num)):
-        # 무한루프를 주고
-        while True:
-            # 만약 N이 num의 n번째 숫자로 나눈 나머지가 0이라면
-            if N % num[n] == 0:
-                # N은 그 숫자로 나눈 몫으로 바꾸고
-                N = N//num[n]
-                # count리스트의 같은 인덱스에 값을 +1해줌
-                count[n] += 1
-            # 나눈 나머지가 0이 아니라면 멈추고 num의 다음 인덱스로 넘어감.
-            else:
-                break
-    # 리스트컴프리핸션을 이용한 출력
-    # print('#{}'.format(tc),' '.join([str(_) for _ in count]))
-    # map함수는 str을 count의 모든항목에 적용
-    print('#{}'.format(tc), ' '.join(map(str, count)))
-    # print('#{}'.format(tc), (map(str, count))) #(x)
+# T = int(input())
+# for tc in range(1, T+1):
+#     N = int(input()) # 입력으로 받은 N을
+#     num = [2, 3, 5, 7, 11] # 소인수 리스트를 만들어서
+#     count = [0, 0, 0, 0, 0] # 나눠진 횟수를 담기위한 빈 리스트 생성
+#
+#     # 리스트 num을 돌면서(range로 한 이유는 같은 인덱스에 count리스트에도 횟수를 추가해주기 위해서)
+#     for n in range(len(num)):
+#         # 무한루프를 주고
+#         while True:
+#             # 만약 N이 num의 n번째 숫자로 나눈 나머지가 0이라면
+#             if N % num[n] == 0:
+#                 # N은 그 숫자로 나눈 몫으로 바꾸고
+#                 N = N//num[n]
+#                 # count리스트의 같은 인덱스에 값을 +1해줌
+#                 count[n] += 1
+#             # 나눈 나머지가 0이 아니라면 멈추고 num의 다음 인덱스로 넘어감.
+#             else:
+#                 break
+#     # 리스트컴프리핸션을 이용한 출력
+#     # print('#{}'.format(tc),' '.join([str(_) for _ in count]))
+#     # map함수는 str을 count의 모든항목에 적용
+#     print('#{}'.format(tc), ' '.join(map(str, count)))
+#     # print('#{}'.format(tc), (map(str, count))) #(x)
 '''
 '{}'.format(tc) : format 메소드는 중괄호({}) 위치에 format 함수 안의 인자를 문자열 형태로 삽입합니다. 
 따라서, 이 부분은 tc의 값을 문자열로 변환하여 중괄호({}) 위치에 삽입합니다.
@@ -83,4 +83,33 @@ for tc in range(1, T+1):
 my_list = [1, 2, 3, 4, 5]
 result = ' '.join(map(str, my_list))
 print(result)  # 출력: "1 2 3 4 5"
+'''
+# =======================================================================
+# 방법 2
+# =======================================================================
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    num_lst = [2,3,5,7,11]
+    cnt_lst = [0,0,0,0,0]
+    for i in range(5):
+        while N % num_lst[i] == 0:
+            cnt_lst[i] += 1
+            N //= num_lst[i]
+    print(f'#{tc} ', end='')
+    print(*cnt_lst)
+'''
+리스트 언패킹(unpacking)
+: 리스트의 요소들을 개별적인 값으로 분리하여 전달합니다.
+def my_function(a, b, c):
+    print(a)
+    print(b)
+    print(c)
+
+my_list = [1, 2, 3]
+my_function(*my_list)
+# 출력:
+# 1
+# 2
+# 3
 '''
