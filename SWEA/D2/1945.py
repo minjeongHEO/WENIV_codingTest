@@ -68,7 +68,19 @@ for tc in range(1, T+1):
     # print('#{}'.format(tc),' '.join([str(_) for _ in count]))
     # map함수는 str을 count의 모든항목에 적용
     print('#{}'.format(tc), ' '.join(map(str, count)))
+    # print('#{}'.format(tc), (map(str, count))) #(x)
 '''
 '{}'.format(tc) : format 메소드는 중괄호({}) 위치에 format 함수 안의 인자를 문자열 형태로 삽입합니다. 
 따라서, 이 부분은 tc의 값을 문자열로 변환하여 중괄호({}) 위치에 삽입합니다.
+'''
+'''
+''.join(map(str, count)) : 여기서 map 함수는 count 리스트의 각 요소를 문자열로 변환하고, 
+                            ' '.join() 함수는 이 문자열들을 공백(' ')으로 결합하여 하나의 문자열을 만듭니다. 
+                            예를 들어, count가 [1, 2, 3]이라면 '1 2 3'이라는 문자열이 생성됩니다.
+                            
+* '구분자'.join(시퀀스) *
+특정 구분자를 사용하여 주어진 시퀀스(리스트, 튜플, 딕셔너리, 문자열 등)의 항목들을 하나의 문자열로 결합하는데 사용
+my_list = [1, 2, 3, 4, 5]
+result = ' '.join(map(str, my_list))
+print(result)  # 출력: "1 2 3 4 5"
 '''
