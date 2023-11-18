@@ -43,3 +43,29 @@ print(result)
 11111
 00000
 '''
+
+# ==================================================================
+# 다른 풀이
+# ==================================================================
+dir = [(-1,0),(1,0),(0,-1),(0,1)]
+
+n, m = map(int,input().split())
+graph = [list(map(int,input())) for _ in range(n)]
+count = 0
+
+def dfs(x,y):
+    if x<=-1 or x>=n or y<=-1 or y>=m or graph[x][y] != 0:
+        return False
+    graph[x][y] = 1
+    for i in range(4):
+        nx = x + dir[i][0]
+        ny = y + dir[i][1]
+        dfs(nx,ny)
+    return True
+
+for i in range(n):
+    for j in range(m):
+        if dfs(i,j) == True:
+            count += 1
+
+print(count)
